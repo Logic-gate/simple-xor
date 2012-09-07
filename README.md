@@ -25,11 +25,14 @@ NOTE: All files will be cleaned(erased) everytime you run this script""")
 
 
 Definition:
+
 EN or en:
 The input string; binary in case of
 compressed files and plain text in case of messages.
+
 DE or de:
-The output string; the encrypted data	
+The output string; the encrypted data
+
 Randomiser or rand:
 The piece of code that insures every attempt
 differs from the next
