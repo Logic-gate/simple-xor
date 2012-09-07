@@ -32,7 +32,7 @@ DE or de:
 The output string; the encrypted data	
 Randomiser or rand:
 The piece of code that insures every attempt
-differs from the next.
+differs from the next
 Key or key:
 Between en and de, the string generated from
 the randomiser will produce the key.
