@@ -25,19 +25,17 @@ NOTE: All files will be cleaned(erased) everytime you run this script""")
 
 
 Definition:
-  EN or en:
-		The input string; binary in case of
-		compressed files and plain text in case of
-		messages.
-	DE or de:
-		The output string; the encrypted data
-
-	Randomiser or rand:
-		The piece of code that insures every attempt
-		differs from the next.
-	Key or key:
-	Between en and de, the string generated from
-	the randomiser will produce the key.
+EN or en:
+The input string; binary in case of
+compressed files and plain text in case of messages.
+DE or de:
+The output string; the encrypted data	
+Randomiser or rand:
+The piece of code that insures every attempt
+differs from the next.
+Key or key:
+Between en and de, the string generated from
+the randomiser will produce the key.
 	
 
 Check Simple_XOR-Like-Wiki.pdf for an example
