@@ -13,10 +13,14 @@ import random
 import datetime
 import time
 import binascii
+from Tkinter import Tk
+from tkFileDialog import askopenfilename
+
 
 from re import *
 
 now = datetime.datetime.now()
+today = datetime.date.today()
 pat=compile('([A-Z]*[a-z]*[0-9]*)+@([A-Z]*[a-z]*[0-9]*)+.([A-Z]*[a-z]*[0-9]*)')
 
 
@@ -90,7 +94,8 @@ def connect(uid,pwd):
 	return pop_conn
 
 def attach(files):
-	path=ask('Please specify file location:')
+	Tk().withdraw()
+	path=askopenfilename()
 	files.append(path)
 	more=ask('More attachments?(Y/N)')
 	if more=='Y' or more=='y':
@@ -98,7 +103,7 @@ def attach(files):
 
 def filess():
 
-	list_ = ["en/data.in", "en/data.out", "en/key.in", "de/de_data.in", "de/de_data.out", "de/de_key.in"] #You can define any path. The defualt directory is where xor_en.py is.
+	list_ = ["email/data.in", "email/data.out", "email/key.in", "email/email.mail"] #You can define any path. The defualt directory is where xor_en.py is.
 	for p in list_:
 		open(p, 'w')
 #this will insure clean files everytime you run it. 
@@ -135,41 +140,11 @@ def composeMail(sender,password,re=0,msg=None):
 		receiver=[msg['Return-Path'] ]#should be a list
 		print 'replying to %s ...'% receiver
 		subject='RE:'+msg['Subject']
-		
-		
-#####################
-##    Encrypter    ##
-##      Email      ##
-#####################	
-	os.system("gedit en/data.in") #change 'gedit' with your text editor
-	path_of_data_in = open("en/data.in", 'r') #path of data.in
-	data_in = path_of_data_in.read()  #read the content
-	path_of_data_in.close()  #close the file
-	l = len(data_in)  #count the char
-	for i in data_in:  
-		key_in= rand(l)   #based on l randomise 
-	path_of_key = open("en/key.in", "w") #path of key.in
-	path_of_key.write(key_in) 
-	path_of_key.close()
-	xor_en_x = xor_en(data_in, ke=key_in) #Encryption
-	path_of_out = open("en/data.out", "w")
-	path_of_out.write(xor_en_x) #Write the encrypted data
-	path_of_out.close()
-	log_header= """Date: """ + str(now) + '\n'+ """
-Original Message: """ + str(data_in) + """
-Number of Characters: """ + str(l) + '\n'+ """
-Key:""" + str(key_in) +  '\n'+ """ 
-Encrypted Message: """+ str(xor_en_x) + """"""
-	log = 'en/log.txt'
-	log_data = open(log, "w")
-	log_data.write("\n" + log_header + "\n" )
-	log_data.close()
-	print ("""The defualt waiting time is 3s""")
-	time.sleep(3)
-	os.system("gedit en/data.in en/data.out en/key.in en/log.txt") #change 'gedit' with your text editor	
-	
-	
-	message = xor_en_x #Encrypted message	
+	open_text = os.system("gedit email/email.mail")
+	read_ = open("email/email.mail", 'r')
+	read_to_msg = read_.read()
+	read_.close()
+	message= read_to_msg + "\nSent from LilyXOR\nLilyMail + Simple XOR-Like"	
 	files=[]
 	hasFile=ask('Do you have an attachment?(Y/N)')
 	if hasFile=='Y' or hasFile=='y':
@@ -183,6 +158,64 @@ Encrypted Message: """+ str(xor_en_x) + """"""
 	else:
 		print 'Message abandoned'
 
+#####################
+##    Encrypter    ##
+##      Email      ##
+#####################
+def composeEncryptedMail(sender,password,re=0,msg=None):
+	if re==0:#not a reply
+		print 'Composing a new message...'
+		receiver=[]
+		getReceiver(receiver)
+		subject=getSubject()
+	else:# reply
+		receiver=[msg['Return-Path'] ]#should be a list
+		print 'replying to %s ...'% receiver
+		subject='RE:'+msg['Subject']
+		
+		
+	
+	os.system("gedit email/data.in") #change 'gedit' with your text editor
+	path_of_data_in = open("email/data.in", 'r') #path of data.in
+	data_in = path_of_data_in.read()  #read the content
+	path_of_data_in.close()  #close the file
+	l = len(data_in)  #count the char
+	for i in data_in:  
+		key_in= rand(l)   #based on l randomise 
+	path_of_key = open("email/key.in", "w") #path of key.in
+	path_of_key.write(key_in) 
+	path_of_key.close()
+	xor_en_x = xor_en(data_in, ke=key_in) #Encryption
+	path_of_out = open("email/data.out", "w")
+	path_of_out.write(xor_en_x) #Write the encrypted data
+	path_of_out.close()
+	log_header= """Date: """ + str(now) + '\n'+ """
+Original Message: """ + str(data_in) + """
+Number of Characters: """ + str(l) + '\n'+ """
+Key:""" + str(key_in) +  '\n'+ """ 
+Encrypted Message: """+ str(xor_en_x) + """"""
+	log = 'email/log.txt'
+	log_data = open(log, "w")
+	log_data.write("\n" + log_header + "\n" )
+	log_data.close()
+	print ("""The defualt waiting time is 3s""")
+	time.sleep(3)
+	os.system("gedit email/data.in email/data.out email/key.in email/log.txt") #change 'gedit' with your text editor	
+	
+	
+	message = xor_en_x +"\n\n\n\nThis is and encrypted email.\nSent from LilyXOR\nLilyMail + Simple XOR-Like"	 #Encrypted message	
+	files=[]
+	hasFile=ask('Do you have an attachment?(Y/N)')
+	if hasFile=='Y' or hasFile=='y':
+		attach(files)
+		
+	ans= ask('Ready to send?(Y/N)')
+	if ans=='Y' or ans=='y':
+		print 'sending...'
+		sendMail(sender,receiver,subject,message,password,files)
+		print 'email sent to ',receiver,' successfully!'
+	else:
+		print 'Message abandoned'
 
 def extractMessageBody(msg):
 	for part in msg.walk():
@@ -232,7 +265,7 @@ def chkAttach(messages,num):#save attachments
 					print 'Attachment saved to %s !' %fullpath
 
 def getInsideAction(messages):
-	print '[OPTIONS: ls, open, new, quit...]\n'
+	print '[OPTIONS: ls, open, new, quit, newEn...]\n'
 	global userid,password
 	action=ask('command: ')
 	if action=='ls':
@@ -250,6 +283,9 @@ def getInsideAction(messages):
 		getAction()
 	elif action=='new':
 		composeMail(userid,password)
+		getInsideAction(messages)
+	elif action == 'newEn': #Encrypt new message
+		composeEncryptedMail(userid,password)
 		getInsideAction(messages)
 	elif action=='open':
 		index=int(ask("please specify the mail number: "))
