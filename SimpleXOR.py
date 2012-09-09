@@ -28,7 +28,7 @@ def files():
 		open(p, 'w')
 #this will insure clean files everytime you run it. 
 	
-files()
+
 
 #####################
 ##   XOR Formula   ##
@@ -86,10 +86,51 @@ Encrypted Message: """+ str(xor_en_x) + """"""
 	log_data.write("\n" + log_header + "\n" )
 	log_data.close()
 	
-	print ("""The defualt waiting time is 3s""")
-	time.sleep(3)
+	
 	os.system("gedit en/data.in en/data.out en/key.in en/log.txt") #change 'gedit' with your text editor	
 
+#####################
+##    Encrypter    ##
+##      File       ##
+#####################
+
+def en_file():
+	print "Select the encrypted file"
+	Tk().withdraw()
+	path_of_file_data_in_en = askopenfilename()
+
+	path_of_data_in = open(path_of_file_data_in_en, 'r') #path of data.in
+	data_in = path_of_data_in.read()  #read the content
+	path_of_data_in.close()  #close the file
+	l = len(data_in)  #count the char
+	for i in data_in:  
+		key_in= rand(l)   #based on l randomise 
+	path_of_key = open("en/key.in", "w") #path of key.in
+	path_of_key.write(key_in) 
+	path_of_key.close()
+		
+		
+		
+	xor_en_x = xor_en(data_in, ke=key_in)
+	de_xor_x = xor_en(xor_en_x, ke=key_in)
+		
+	path_of_out = open("en/data.out", "w")
+	path_of_out.write(xor_en_x)
+	path_of_out.close()
+		
+		
+	log_header= """Date: """ + str(now) +  '\n'+ """
+Original Message: """ + str(data_in) +  '\n'+ """
+Number of Characters: """ + str(l) +  '\n'+ """
+Key:""" + str(key_in) + '\n'+""" 
+Encrypted Message: """+ str(xor_en_x) + """"""
+	log = 'en/log.txt'
+	log_data = open(log, "w")
+	log_data.write("\n" + log_header + "\n" )
+	log_data.close()
+	
+	
+	os.system("gedit en/data.out en/key.in en/log.txt") #change 'gedit' with your text editor	
 
 #####################
 ##    Decrypter    ##
@@ -97,14 +138,17 @@ Encrypted Message: """+ str(xor_en_x) + """"""
 #####################
 		
 def de():
-	print """Place your encrypted message in the de_data.in and your key in de_key.in, save and then exit gedit"""
-	os.system("gedit de/de_data.in de/de_key.in")
-	
-	path_of_de_data_in = open("de/de_data.in", "r")
+	print "Select the encrypted file"
+	Tk().withdraw()
+	path_of_file_data_in_ = askopenfilename()
+
+	path_of_de_data_in = open(path_of_file_data_in_, "r")
 	de_data_in = path_of_de_data_in.read()
 	path_of_de_data_in.close()
 		
-	path_of_de_key = open("de/de_key.in", "r")
+	print "Select the key"
+	path_of_file_data_key_ = askopenfilename()
+	path_of_de_key = open(path_of_file_data_key_, "r")
 	de_key_in = path_of_de_key.read()
 	path_of_de_key.close()
 		
@@ -124,15 +168,17 @@ Decrypted Message: """+ str(de_xor_x)+ """\n"""
 	log_data_de.write(log_header_de + "\n" )
 	log_data_de.close()
 	
-	print ("""The defualt waiting time is 3s""")
-	time.sleep(3)
-	os.system("gedit de/de_data.in de/de_key.in de/log.txt de/de_data.out")
+	
+	os.system("gedit de/log.txt de/de_data.out")
 
 
 #####################
 ##    Encrypter    ##
 ##      File       ##
+##	  Deprecated   ##
 #####################
+
+'''
 def enf():
 	Tk().withdraw()
 	path_of_file = askopenfilename() 
@@ -180,9 +226,10 @@ Encrypted Message: """+ str(xor_en_x_file)+ """"""
 	log_data_file.write("\n" + log_header + "\n" )
 	log_data_file.close()
 	
-	print ("""The defualt waiting time is 3s""")
-	time.sleep(3)
 	os.system("gedit en/data.in en/data.out en/key.in en/log.txt") #change 'gedit' with your text editor	
+
+
+'''
 
 def head_info():
 	
@@ -201,29 +248,29 @@ All the files mentioned above will be opened in Gedit
 NOTE: All files will be cleaned(erased) everytime you run this script""")
 
 def cmd():
-	msgs = """'en' for text encryption
-'de' for text decryption
-'enf' for file encryption
-'qt' to quit"""
+	msgs = """'e' for text encryption
+'d' for text decryption
+'ef' for for file encryption
+'q' to quit"""
 	print msgs
 
 
 if __name__=='__main__':
+	files()
 	head_info()
 	cmd()
 	
 	while True:
 		c = raw_input(">> ")
-		if c == "en":
+		if c == "e":
 			en()
-		elif c == "de":
+		elif c == "d":
 			de()
-		elif c == "enf":
-			enf()
-		elif c == "qt":
+		elif c == "ef":
+			en_file()
+		#elif c == "enf":
+		#	enf()
+		elif c == "q":
 			break
 		else:
-			print """'en' for message encryption
-'de' for message decryption
-'enf' for file encryption
-'qt' to quit"""
+			cmd()
