@@ -1,12 +1,17 @@
-Simple xor-Like 0.3 beta
-
+Simple xor-Like 0.4 beta
 ==========
 
-Simple XOR-Like 0.3 beta
+Simple XOR-Like 0.4 beta--SimpleXOR.py
 
-Added seperate command for encrypted email in LilyXOR.py
-Added Text_editor as email composer LilyXOR.py
-Added GUI for file attachments in LilyXOR.py 
+Fixed decryption issue--Added GUI for encrypted files and key
+File encrypter/binary is now deprecated
+Fixed Randomiser issue--# of ASCII Char. to randomise is the # on Char. in the message 
+
+Simple XOR-Like 0.3 beta--LilyXOR.py
+
+Added seperate command for encrypted email
+Added Text_editor as email composer
+Added GUI for file attachments
 
 
 Simple XOR-Like 0.2 beta
