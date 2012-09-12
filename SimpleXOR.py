@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+#By mad_dev(A'mmer Almadani)
 from itertools import izip, cycle
 import string
 import random
@@ -12,7 +12,7 @@ import binascii
 from Tkinter import Tk
 from tkFileDialog import askopenfilename
 
-
+import LilyXOR
 
 now = datetime.datetime.now()
 
@@ -79,7 +79,7 @@ def en():
 	log_header= """Date: """ + str(now) + '\n'+ """
 Original Message: """ + str(data_in) + """
 Number of Characters: """ + str(l) + '\n'+ """
-Key:""" + str(key_in) +  '\n'+ """ 
+Key: [""" + str(key_in) + """]""" + '\n'+ """ 
 Encrypted Message: """+ str(xor_en_x) + """"""
 	log = 'en/log.txt'
 	log_data = open(log, "w")
@@ -122,7 +122,7 @@ def en_file():
 	log_header= """Date: """ + str(now) +  '\n'+ """
 Original Message: """ + str(data_in) +  '\n'+ """
 Number of Characters: """ + str(l) +  '\n'+ """
-Key:""" + str(key_in) + '\n'+""" 
+Key: [""" + str(key_in) + """]""" + '\n'+ """ 
 Encrypted Message: """+ str(xor_en_x) + """"""
 	log = 'en/log.txt'
 	log_data = open(log, "w")
@@ -232,45 +232,49 @@ Encrypted Message: """+ str(xor_en_x_file)+ """"""
 '''
 
 def head_info():
-	
-	print "Simple XOR-Like 0.2 Beta\n" 
-	print "0.2 beta:\nAdded file encryption(experimental)\nAdded main loop\nChenged name to Simple XOR-Like\nImplemented with email client: check LilyXOR.py\n"
-
-	print ("""A simple XOR-Like Encrypter and Decrypter by mad_dev
-
-This script will create the following:
-"en/data.in", "en/data.out", "en/key.in", "de/de_data.in", "de/de_data.out", 
-"de/de_key.in, "en/log.txt" and "de/log.txt"
-
-All the files mentioned above will be opened in Gedit
-(you can edit this from the source code)
-
-NOTE: All files will be cleaned(erased) everytime you run this script""")
+	print """
+   _____            __      _  ______  ___      __   _ __      
+  / __(_)_ _  ___  / /__   | |/_/ __ \/ _ \____/ /  (_) /_____ 
+ _\ \/ /  ' \/ _ \/ / -_) _>  </ /_/ / , _/___/ /__/ /  '_/ -_)
+/___/_/_/_/_/ .__/_/\__/ /_/|_|\____/_/|_|   /____/_/_/\_\\__/ 
+           /_/                                               0.5 Beta\n
+          	An XOR-Like Encrypter and Decrypter by mad_dev\n                            
+"""
+	print ("command list: type help\n")
 
 def cmd():
-	msgs = """'e' for text encryption
-'d' for text decryption
-'ef' for for file encryption
-'q' to quit"""
+	msgs = """\nCOMMANDS:	
+	  e 		text encryption
+	  d		decryption
+	  ef		file encryption
+	  lxor 		LilyXOR
+	  quit 		quit\n"""
 	print msgs
 
+def action():
+	
+	c = raw_input(">>: ")
+	if c == "e":
+		en()
+	elif c == "d":
+		de() 
+	elif c == "ef":
+		en_file()
+	#elif c == "enf":
+		#	enf()
+	elif c == "lxor":
+		LilyXOR.getAction()
+		
+	elif c == "quit":
+		exit()
+	elif c== "help":
+		cmd()
+	else:
+		print "Not defined...."
 
 if __name__=='__main__':
 	files()
 	head_info()
-	cmd()
-	
 	while True:
-		c = raw_input(">> ")
-		if c == "e":
-			en()
-		elif c == "d":
-			de()
-		elif c == "ef":
-			en_file()
-		#elif c == "enf":
-		#	enf()
-		elif c == "q":
-			break
-		else:
-			cmd()
+		action()
+		
