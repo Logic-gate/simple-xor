@@ -1,3 +1,10 @@
+Simple XOR-Like 0.5 beta
+========
+Added launcher(You'll need Xterm).
+
+Connected Simple XOR to LilyXor
+
+
 Simple XOR-Like 0.4 beta
 ==========
 Fixed decryption issue--Added GUI for encrypted files and key.
