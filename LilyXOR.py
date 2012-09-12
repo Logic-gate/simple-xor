@@ -16,6 +16,7 @@ import binascii
 from Tkinter import Tk
 from tkFileDialog import askopenfilename
 
+import SimpleXOR
 
 from re import *
 
@@ -32,7 +33,7 @@ def isGoodEmail(addr):
 	return pat.search(addr)
 
 def getUser():
-	user=ask('Your email address: ')
+	user = ask('Enter Email: ')
 	if isGoodEmail(user): 
 		return user
 	else:
@@ -192,7 +193,7 @@ def composeEncryptedMail(sender,password,re=0,msg=None):
 	log_header= """Date: """ + str(now) + '\n'+ """
 Original Message: """ + str(data_in) + """
 Number of Characters: """ + str(l) + '\n'+ """
-Key:""" + str(key_in) +  '\n'+ """ 
+Key: [""" + str(key_in) + """]""" + '\n'+ """ 
 Encrypted Message: """+ str(xor_en_x) + """"""
 	log = 'email/log.txt'
 	log_data = open(log, "w")
@@ -203,7 +204,7 @@ Encrypted Message: """+ str(xor_en_x) + """"""
 	os.system("gedit email/data.in email/data.out email/key.in email/log.txt") #change 'gedit' with your text editor	
 	
 	
-	message = xor_en_x +"\n\n\n\nThis is and encrypted email.\nSent from LilyXOR\nLilyMail + Simple XOR-Like"	 #Encrypted message	
+	message = xor_en_x +"\n\n\n\nThis is an encrypted email.\nSent from LilyXOR"	 #Encrypted message	
 	files=[]
 	hasFile=ask('Do you have an attachment?(Y/N)')
 	if hasFile=='Y' or hasFile=='y':
@@ -327,7 +328,18 @@ def login():
 
 
 def getAction():
-	print '[OPTIONS: login, quit...]\n'
+	
+	print """
+   __    _  __       _  __ ____   ___ 
+  / /   (_)/ /__ __ | |/_// __ \ / _ \ 
+ / /__ / // // // /_>  < / /_/ // , _/
+/____//_//_/ \_, //_/|_| \____//_/|_| 
+            /___/                   0.0.1 beta\n  
+	Original(LilyMail) by: Xiaolong Cheng \n   
+"""
+	filess()
+	print 'Only encrypts outgoing emails'
+	print '\n[OPTIONS: login, quit, sxor...]\n'
 	action=ask('command: ')
 	if action=='quit':
 		sys.exit(0)
@@ -335,17 +347,12 @@ def getAction():
 		print 'Please verify your identity '
 		login()
 	elif action=='help':
-		print '[login] start a login session\n [quit] exit program'
+		print '[login] start a login session\n [quit] exit program\n [sxor] SimpleXOR'
+	elif action=='sxor':
+		SimpleXOR.action()
 	else:
-		print 'invalid command'
+		print 'invalid command...back to sxor'
 
 
-if __name__=='__main__':
-	print '\nLilyXOR 0.0.1 beta \n LilyMail by: Xiaolong Cheng \n Simple XOR-Like by: Ammer Madani(mad_dev)' 
-	print 'Only encrypts outgoing emails'
-	filess()
-	userid=''
-	password=''
-	while True:
-		getAction()
+
 
