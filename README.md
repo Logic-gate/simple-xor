@@ -1,3 +1,7 @@
+HOW TO
+=====
+Run start.pyw
+
 Simple XOR-Like 0.5 beta
 ========
 Added launcher(You'll need Xterm).
