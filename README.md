@@ -1,6 +1,10 @@
 HOW TO
 =====
-Run start.pyw
+Run start.pyw for command line(All features)
+
+Run SimpleXOR_EncrypterGui.pyw for GUI Encrypter(Encryption Only)
+Note: There are a few issues with the GUI(encrypted message is not complete)
+=======
 
 Simple XOR-Like 0.5 beta
 ========
