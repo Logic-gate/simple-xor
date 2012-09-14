@@ -1,4 +1,18 @@
-Simple XOR-Like 0.4 beta
+HOW TO
+=====
+Run start.pyw for command line(All features)
+
+Run SimpleXOR_EncrypterGui.pyw for GUI Encrypter(Encryption Only)
+Note: There are a few issues with the GUI(encrypted message is not complete)
+
+Simple XOR-Like 0.5 beta
+========
+Added launcher(You'll need Xterm).
+
+Connected Simple XOR to LilyXor
+
+
+Old-Simple XOR-Like 0.4 beta
 ==========
 Fixed decryption issue--Added GUI for encrypted files and key.
 
@@ -34,3 +48,4 @@ One-Time-Pad Encryption/Decryption Software
 A simple XOR-Like Encrypter and Decrypter by mad_dev
 
 Check Simple_XOR-Like-Wiki.pdf for an example
+
