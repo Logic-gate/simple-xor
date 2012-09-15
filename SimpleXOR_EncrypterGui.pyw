@@ -1,97 +1,179 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #By mad_dev(A'mmer Almadani)
-# Form implementation generated from reading ui file 'simpleXOR_encrypter_v2.ui'
+# Form implementation generated from reading ui file 'simpleXOR_encrypter.ui'
 #
-# Created: Fri Sep 14 19:59:56 2012
+# Created: Sat Sep 15 04:17:58 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 import SimpleXOR
-import datetime
+import time
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
     _fromUtf8 = lambda s: s
 
-now = datetime.datetime.now()
+
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
-        Form.resize(336, 297)
+        Form.resize(872, 291)
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Guardian Laser"))
+        font.setBold(False)
+        font.setWeight(50)
+        Form.setFont(font)
+        self.gridLayout = QtGui.QGridLayout(Form)
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
+        self.verticalLayout_6 = QtGui.QVBoxLayout()
+        self.verticalLayout_6.setObjectName(_fromUtf8("verticalLayout_6"))
+        self.verticalLayout_3 = QtGui.QVBoxLayout()
+        self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
+        self.encrypted_label = QtGui.QLabel(Form)
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Radio Space"))
+        font.setPointSize(14)
+        self.encrypted_label.setFont(font)
+        self.encrypted_label.setObjectName(_fromUtf8("encrypted_label"))
+        self.verticalLayout_3.addWidget(self.encrypted_label)
+        self.encrypted_text = QtGui.QTextEdit(Form)
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Courier New"))
         font.setBold(True)
         font.setWeight(75)
-        Form.setFont(font)
-        self.gridLayout_2 = QtGui.QGridLayout(Form)
-        self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
-        self.gridLayout = QtGui.QGridLayout()
-        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.horizontalLayout = QtGui.QHBoxLayout()
-        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        self.Select_BTN = QtGui.QPushButton(Form)
-        self.Select_BTN.setObjectName(_fromUtf8("Select_BTN"))
-        self.horizontalLayout.addWidget(self.Select_BTN)
-        self.label = QtGui.QLabel(Form)
-        self.label.setText(_fromUtf8(""))
-        self.label.setObjectName(_fromUtf8("label"))
-        self.horizontalLayout.addWidget(self.label)
-        self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
+        self.encrypted_text.setFont(font)
+        self.encrypted_text.setReadOnly(True)
+        self.encrypted_text.setAcceptRichText(False)
+        self.encrypted_text.setObjectName(_fromUtf8("encrypted_text"))
+        self.verticalLayout_3.addWidget(self.encrypted_text)
+        self.verticalLayout_6.addLayout(self.verticalLayout_3)
+        self.gridLayout.addLayout(self.verticalLayout_6, 0, 2, 1, 1)
+        self.verticalLayout_4 = QtGui.QVBoxLayout()
+        self.verticalLayout_4.setObjectName(_fromUtf8("verticalLayout_4"))
         self.verticalLayout = QtGui.QVBoxLayout()
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-        
-        
-        self.label_2 = QtGui.QLabel(Form)
-        self.label_2.setObjectName(_fromUtf8("label_2"))
-        self.verticalLayout.addWidget(self.label_2)
-        self.plainTextEdit = QtGui.QPlainTextEdit(Form)
-        self.plainTextEdit.setReadOnly(True)
-        self.plainTextEdit.setPlainText(_fromUtf8(""))
-        self.plainTextEdit.setObjectName(_fromUtf8("plainTextEdit"))
-        self.verticalLayout.addWidget(self.plainTextEdit)
-        self.gridLayout.addLayout(self.verticalLayout, 1, 0, 1, 1)
-        self.Clear = QtGui.QPushButton(Form)
-        self.Clear.setObjectName(_fromUtf8("Clear"))
-        self.gridLayout.addWidget(self.Clear, 2, 0, 1, 1)
-        self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
+        self.original_label = QtGui.QLabel(Form)
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Radio Space"))
+        font.setPointSize(14)
+        self.original_label.setFont(font)
+        self.original_label.setObjectName(_fromUtf8("original_label"))
+        self.verticalLayout.addWidget(self.original_label)
+        self.Original_text = QtGui.QTextEdit(Form)
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Courier New"))
+        font.setBold(True)
+        font.setWeight(75)
+        self.Original_text.setFont(font)
+        self.Original_text.setReadOnly(True)
+        self.Original_text.setObjectName(_fromUtf8("Original_text"))
+        self.verticalLayout.addWidget(self.Original_text)
+        self.verticalLayout_4.addLayout(self.verticalLayout)
+        self.gridLayout.addLayout(self.verticalLayout_4, 0, 0, 1, 1)
+        self.verticalLayout_5 = QtGui.QVBoxLayout()
+        self.verticalLayout_5.setObjectName(_fromUtf8("verticalLayout_5"))
+        self.verticalLayout_2 = QtGui.QVBoxLayout()
+        self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
+        self.generated_label = QtGui.QLabel(Form)
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Radio Space"))
+        font.setPointSize(14)
+        self.generated_label.setFont(font)
+        self.generated_label.setObjectName(_fromUtf8("generated_label"))
+        self.verticalLayout_2.addWidget(self.generated_label)
+        self.Key_text = QtGui.QTextEdit(Form)
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Courier New"))
+        font.setBold(True)
+        font.setWeight(75)
+        self.Key_text.setFont(font)
+        self.Key_text.setReadOnly(True)
+        self.Key_text.setObjectName(_fromUtf8("Key_text"))
+        self.verticalLayout_2.addWidget(self.Key_text)
+        self.verticalLayout_5.addLayout(self.verticalLayout_2)
+        self.gridLayout.addLayout(self.verticalLayout_5, 0, 1, 1, 1)
+        self.selectBtnAndEncrypt = QtGui.QPushButton(Form)
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Radio Space"))
+        font.setPointSize(12)
+        self.selectBtnAndEncrypt.setFont(font)
+        self.selectBtnAndEncrypt.setObjectName(_fromUtf8("selectBtnAndEncrypt"))
+        self.gridLayout.addWidget(self.selectBtnAndEncrypt, 1, 0, 1, 1)
+        self.clearBtn = QtGui.QPushButton(Form)
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Radio Space"))
+        font.setPointSize(12)
+        self.clearBtn.setFont(font)
+        self.clearBtn.setObjectName(_fromUtf8("clearBtn"))
+        self.gridLayout.addWidget(self.clearBtn, 2, 0, 1, 1)
+        self.filePath = QtGui.QLabel(Form)
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Courier New"))
+        self.filePath.setFont(font)
+        self.filePath.setText(_fromUtf8(""))
+        self.filePath.setObjectName(_fromUtf8("filePath"))
+        self.gridLayout.addWidget(self.filePath, 1, 1, 1, 1)
+        self.time = QtGui.QLabel(Form)
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Courier New"))
+        self.time.setFont(font)
+        self.time.setText(_fromUtf8(""))
+        self.time.setObjectName(_fromUtf8("time"))
+        self.gridLayout.addWidget(self.time, 1, 2, 1, 1)
+        self.originalCharCount = QtGui.QLabel(Form)
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Courier New"))
+        self.originalCharCount.setFont(font)
+        self.originalCharCount.setText(_fromUtf8(""))
+        self.originalCharCount.setObjectName(_fromUtf8("originalCharCount"))
+        self.gridLayout.addWidget(self.originalCharCount, 2, 1, 1, 1)
 
         self.retranslateUi(Form)
-        QtCore.QObject.connect(self.Select_BTN, QtCore.SIGNAL(_fromUtf8("clicked()")), self.selectFile) #File Dialog
-        QtCore.QObject.connect(self.Clear, QtCore.SIGNAL(_fromUtf8("clicked()")), self.plainTextEdit.clear) #Clear All
-        QtCore.QObject.connect(self.Clear, QtCore.SIGNAL(_fromUtf8("clicked()")), self.label.clear) #Clear All
-       
+        QtCore.QObject.connect(self.clearBtn, QtCore.SIGNAL(_fromUtf8("clicked()")), self.Original_text.clear)
+        QtCore.QObject.connect(self.clearBtn, QtCore.SIGNAL(_fromUtf8("clicked()")), self.Key_text.clear)
+        QtCore.QObject.connect(self.clearBtn, QtCore.SIGNAL(_fromUtf8("clicked()")), self.encrypted_text.clear)
+        QtCore.QObject.connect(self.clearBtn, QtCore.SIGNAL(_fromUtf8("clicked()")), self.originalCharCount.clear)
+        QtCore.QObject.connect(self.clearBtn, QtCore.SIGNAL(_fromUtf8("clicked()")), self.filePath.clear)
+        QtCore.QObject.connect(self.clearBtn, QtCore.SIGNAL(_fromUtf8("clicked()")), self.time.clear)
+
+        QtCore.QObject.connect(self.selectBtnAndEncrypt, QtCore.SIGNAL(_fromUtf8("clicked()")), self.selectFile)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def selectFile(self):
         dialog = QtGui.QFileDialog
         fileDialog = dialog.getOpenFileName(Form)
-        filePath = self.label.setText(fileDialog)
+        filePathP = self.filePath.setText(fileDialog)
         
-        f = open(fileDialog, 'r') 
+        f = open(fileDialog, 'r')
+        now = time.time() 
         with f:        
             data = f.read()
-            l = len(data) 
-            f.close() #not sure this is the right place
-            key= SimpleXOR.rand(l)
+            l = len(data)
+            for i in data:  
+                key= SimpleXOR.rand(l)
             xor = SimpleXOR.xor_en(data, ke=key)
 
-            log = """Date: """ + str(now) + '\n'+ """
-Original Message: """ + str(data) + """
-Number of Characters: """ + str(l) + '\n'+ """
-Key: [""" + str(key) + """]""" + '\n'+ """ 
-Encrypted Message: ["""+ str(xor) + """]"""
+            self.Original_text.setText(data)
+            self.Key_text.setText(key)
+            self.encrypted_text.setText(xor)
 
-            self.plainTextEdit.setPlainText(log)
+            nowTime = 'Process took %s s' %str(time.time() - now)
+            self.time.setText(nowTime)
 
+            charCount = "There are %s characters in the original file" %l
+            self.originalCharCount.setText(charCount)
+
+        f.close()
     def retranslateUi(self, Form):
-        Form.setWindowTitle(QtGui.QApplication.translate("SimpleXOR-EncrypterGui", "SimpleXOR-EncrypterGui", None, QtGui.QApplication.UnicodeUTF8))
-        self.Select_BTN.setText(QtGui.QApplication.translate("Form", "Select File and Encrypt", None, QtGui.QApplication.UnicodeUTF8))
-       
-        self.label_2.setText(QtGui.QApplication.translate("Form", "<html><head/><body><p align=\"center\">Log</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.Clear.setText(QtGui.QApplication.translate("Form", "Clear All", None, QtGui.QApplication.UnicodeUTF8))
+        Form.setWindowTitle(QtGui.QApplication.translate("Form", "SimpleXOR-EncrypterGui", None, QtGui.QApplication.UnicodeUTF8))
+        self.encrypted_label.setText(QtGui.QApplication.translate("Form", "<html><head/><body><p align=\"center\">Encrypted Data</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+        self.original_label.setText(QtGui.QApplication.translate("Form", "<html><head/><body><p align=\"center\">Original</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+        self.generated_label.setText(QtGui.QApplication.translate("Form", "<html><head/><body><p align=\"center\">Generated Key</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+        self.selectBtnAndEncrypt.setText(QtGui.QApplication.translate("Form", "Encrypt", None, QtGui.QApplication.UnicodeUTF8))
+        self.clearBtn.setText(QtGui.QApplication.translate("Form", "Clear All", None, QtGui.QApplication.UnicodeUTF8))
 
 
 if __name__ == "__main__":
