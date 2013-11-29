@@ -1,3 +1,7 @@
+THIS PROJECT HAS MOVED TO https://github.com/Logic-gate/madXOR  
+
+NO DEVELOPMENT WILL TAKE PLACE AS OF NOV 29, 2013
+
 HOW TO
 =====
 Run start.pyw for command line(All features)
